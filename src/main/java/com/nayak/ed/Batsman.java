@@ -2,27 +2,21 @@ package com.nayak.ed;
 
 import com.google.common.base.Joiner;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Batsman {
 
     private final RunsGenerator runsGenerator;
-    private final ArrayList<Integer> runsScored;
 
     public Batsman(RunsGenerator runsGenerator) {
         this.runsGenerator = runsGenerator;
-        this.runsScored = new ArrayList<>();
     }
 
-    public void score() {
-        runsScored.add(runsGenerator.runs());
+    public int score() {
+        return runsGenerator.runs();
     }
 
-    public int runsScored() {
-        return runsScored.stream().mapToInt(Integer::intValue).sum();
-    }
-
-    public String displayRunsScored() {
+    public String displayRunsScored(List<Integer> runsScored) {
         return "Batsman: " + Joiner.on(' ').join(runsScored);
     }
 }

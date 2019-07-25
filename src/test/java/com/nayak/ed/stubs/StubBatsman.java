@@ -2,25 +2,28 @@ package com.nayak.ed.stubs;
 
 import com.nayak.ed.Batsman;
 
+import java.util.List;
+
 public class StubBatsman extends Batsman {
 
-    private final int runsScored;
+    private final int seed;
+    public static final String RUNS_SCORED = "Runs Scored";
     private int scoreCallCount;
 
-    public StubBatsman(int runsScored) {
+    public StubBatsman(int seed) {
         super(new StubRunsGenerator(0));
-        this.runsScored = runsScored;
+        this.seed = seed;
         scoreCallCount = 0;
     }
 
     @Override
-    public void score() {
-        scoreCallCount++;
+    public int score() {
+        return seed + scoreCallCount++;
     }
 
     @Override
-    public int runsScored() {
-        return runsScored;
+    public String displayRunsScored(List<Integer> runsScored) {
+        return RUNS_SCORED;
     }
 
     public int getScoreCallCount() {
